@@ -17,7 +17,8 @@ public class PokemonMythologyCommand {
     @SubscribeEvent
     public static void onCommandRegistration (RegisterCommandsEvent event) {
 
-        new TestCommand(event.getDispatcher());
+        new InfoCommand(event.getDispatcher());
+        new ReloadCommand(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
 

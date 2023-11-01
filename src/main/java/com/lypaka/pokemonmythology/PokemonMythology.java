@@ -3,6 +3,7 @@ package com.lypaka.pokemonmythology;
 import com.lypaka.lypakautils.ConfigurationLoaders.BasicConfigManager;
 import com.lypaka.lypakautils.ConfigurationLoaders.ConfigUtils;
 import net.minecraftforge.fml.common.Mod;
+import ninja.leaping.configurate.objectmapping.ObjectMappingException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,12 +24,13 @@ public class PokemonMythology {
      * Alpha, Beta, Gamma, Omega, Delta, Sigma
      */
 
-    public PokemonMythology() throws IOException {
+    public PokemonMythology() throws IOException, ObjectMappingException {
 
         Path dir = ConfigUtils.checkDir(Paths.get("./config/pokemonmythology"));
         String[] files = new String[]{"pokemonMythology.conf"};
         configManager = new BasicConfigManager(files, dir, PokemonMythology.class, MOD_NAME, MOD_ID, logger);
         configManager.init();
+        ConfigGetters.load();
 
     }
 
