@@ -16,6 +16,8 @@ public class RibbonHandler {
     public static MutableRibbonData gammaRibbonData;
     public static MutableRibbonData omegaRibbonData;
     public static MutableRibbonData sigmaRibbonData;
+    public static MutableRibbonData thetaRibbonData;
+    public static MutableRibbonData zetaRibbonData;
 
     public static Ribbon alphaRibbon;
     public static Ribbon betaRibbon;
@@ -23,6 +25,8 @@ public class RibbonHandler {
     public static Ribbon gammaRibbon;
     public static Ribbon omegaRibbon;
     public static Ribbon sigmaRibbon;
+    public static Ribbon thetaRibbon;
+    public static Ribbon zetaRibbon;
 
     public static void loadRibbons() {
 
@@ -49,6 +53,14 @@ public class RibbonHandler {
         sigmaRibbonData = new MutableRibbonData();
         sigmaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Sigma")));
         sigmaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), sigmaRibbonData);
+
+        thetaRibbonData = new MutableRibbonData();
+        thetaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Theta")));
+        thetaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), thetaRibbonData);
+
+        zetaRibbonData = new MutableRibbonData();
+        zetaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Zeta")));
+        zetaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), zetaRibbonData);
 
     }
 

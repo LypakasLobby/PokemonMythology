@@ -20,7 +20,7 @@ public class MythicHandler {
 
     public static String getRandomMythic() {
 
-        List<String> mythicList = Arrays.asList("Alpha", "Beta", "Delta", "Gamma", "Omega", "Sigma");
+        List<String> mythicList = Arrays.asList("Alpha", "Beta", "Delta", "Gamma", "Omega", "Sigma", "Theta", "Zeta");
         return RandomHelper.getRandomElementFromList(mythicList);
 
     }
@@ -58,12 +58,16 @@ public class MythicHandler {
         GammaPokemon gamma = new GammaPokemon("Gamma", BattleStatsType.SPEED, ConfigGetters.tints.get("Gamma"), ConfigGetters.scales.get("Gamma"), RibbonHandler.gammaRibbon);
         OmegaPokemon omega = new OmegaPokemon("Omega", BattleStatsType.SPECIAL_ATTACK, ConfigGetters.tints.get("Omega"), ConfigGetters.scales.get("Omega"), RibbonHandler.omegaRibbon);
         SigmaPokemon sigma = new SigmaPokemon("Sigma", BattleStatsType.DEFENSE, ConfigGetters.tints.get("Sigma"), ConfigGetters.scales.get("Sigma"), RibbonHandler.sigmaRibbon);
+        ThetaPokemon theta = new ThetaPokemon("Theta", BattleStatsType.EVASION, ConfigGetters.tints.get("Theta"), ConfigGetters.scales.get("Theta"), RibbonHandler.thetaRibbon);
+        ZetaPokemon zeta = new ZetaPokemon("Zeta", BattleStatsType.ACCURACY, ConfigGetters.tints.get("Zeta"), ConfigGetters.scales.get("Zeta"), RibbonHandler.zetaRibbon);
         mythicMap.put("Alpha", alpha);
         mythicMap.put("Beta", beta);
         mythicMap.put("Delta", delta);
         mythicMap.put("Gamma", gamma);
         mythicMap.put("Omega", omega);
         mythicMap.put("Sigma", sigma);
+        mythicMap.put("Theta", theta);
+        mythicMap.put("Zeta", zeta);
 
     }
 
