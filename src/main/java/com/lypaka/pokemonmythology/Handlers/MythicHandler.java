@@ -17,10 +17,10 @@ import java.util.Map;
 public class MythicHandler {
 
     public static Map<String, MythicPokemon> mythicMap;
+    public static List<String> mythicList = Arrays.asList("Alpha", "Beta", "Delta", "Gamma", "Omega", "Sigma", "Theta", "Zeta");
 
     public static String getRandomMythic() {
 
-        List<String> mythicList = Arrays.asList("Alpha", "Beta", "Delta", "Gamma", "Omega", "Sigma", "Theta", "Zeta");
         return RandomHelper.getRandomElementFromList(mythicList);
 
     }
@@ -102,6 +102,22 @@ public class MythicHandler {
 
         int naturalStat = pokemon.getStats().calculateStat(battleStats, pokemon.getNature(), pokemon.getForm(), level);
         int updated = (int) (naturalStat * ConfigGetters.statModifier);
+        pokemon.getStats().set(battleStats, updated);
+
+    }
+
+    public static void setMythic (Pokemon pokemon, MythicPokemon mythic) {
+
+        Color color = mythic.getColor();
+        float scale = mythic.getScale();
+        Ribbon ribbon = mythic.getRibbon();
+        BattleStatsType battleStats = mythic.getStatBoosted();
+
+        pokemon.addRibbon(ribbon);
+        pokemon.setDisplayedRibbon(ribbon);
+        pokemon.getPersistentData().putString("Mythic", mythic.getName());
+        int stat = pokemon.getStats().get(battleStats);
+        int updated = (int) (stat * ConfigGetters.statModifier);
         pokemon.getStats().set(battleStats, updated);
 
     }

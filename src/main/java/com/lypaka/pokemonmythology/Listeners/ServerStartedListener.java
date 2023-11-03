@@ -17,6 +17,7 @@ public class ServerStartedListener {
         RibbonHandler.loadRibbons();
         MythicHandler.loadMythics();
 
+        Pixelmon.EVENT_BUS.register(new BreedListener());
         Pixelmon.EVENT_BUS.register(new LevelUpListener());
         Pixelmon.EVENT_BUS.register(new SpawnListener());
         Pixelmon.EVENT_BUS.register(new PixelmonUpdateListener());
