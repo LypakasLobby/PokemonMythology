@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class SigmaPokemon extends MythicPokemon {
 
-    public SigmaPokemon (String name, BattleStatsType statBoosted, Color color, float scale, Ribbon ribbon) {
+    public SigmaPokemon (String name, BattleStatsType[] statBoosted, Color color, float scale, Ribbon ribbon) {
 
         super(name, statBoosted, color, scale, ribbon);
 

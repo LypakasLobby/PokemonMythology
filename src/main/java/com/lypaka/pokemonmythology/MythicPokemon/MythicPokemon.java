@@ -8,12 +8,12 @@ import java.awt.*;
 public abstract class MythicPokemon {
 
     private final String name;
-    private final BattleStatsType statBoosted;
+    private final BattleStatsType[] statBoosted;
     private final Color color;
     private final float scale;
     private final Ribbon ribbon;
 
-    public MythicPokemon (String name, BattleStatsType statBoosted, Color color, float scale, Ribbon ribbon) {
+    public MythicPokemon (String name, BattleStatsType[] statBoosted, Color color, float scale, Ribbon ribbon) {
 
         this.name = name;
         this.statBoosted = statBoosted;
@@ -29,7 +29,7 @@ public abstract class MythicPokemon {
 
     }
 
-    public BattleStatsType getStatBoosted() {
+    public BattleStatsType[] getStatBoosted() {
 
         return this.statBoosted;
 

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PokemonMythology.main.iml" filepath="$PROJECT_DIR$/.idea/modules/PokemonMythology.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PokemonMythology.test.iml" filepath="$PROJECT_DIR$/.idea/modules/PokemonMythology.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.lypaka.PokemonMythology.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.lypaka.PokemonMythology.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.lypaka.PokemonMythology.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.lypaka.PokemonMythology.test.iml" />
     </modules>
   </component>
 </project>

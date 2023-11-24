@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class BetaPokemon extends MythicPokemon {
 
-    public BetaPokemon (String name, BattleStatsType statBoosted, Color color, float scale, Ribbon ribbon) {
+    public BetaPokemon (String name, BattleStatsType[] statBoosted, Color color, float scale, Ribbon ribbon) {
 
         super(name, statBoosted, color, scale, ribbon);
 

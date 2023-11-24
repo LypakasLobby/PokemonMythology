@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class ThetaPokemon extends MythicPokemon {
 
-    public ThetaPokemon (String name, BattleStatsType statBoosted, Color color, float scale, Ribbon ribbon) {
+    public ThetaPokemon (String name, BattleStatsType[] statBoosted, Color color, float scale, Ribbon ribbon) {
 
         super(name, statBoosted, color, scale, ribbon);
 

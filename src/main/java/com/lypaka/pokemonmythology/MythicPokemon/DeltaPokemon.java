@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class DeltaPokemon extends MythicPokemon {
 
-    public DeltaPokemon (String name, BattleStatsType statBoosted, Color color, float scale, Ribbon ribbon) {
+    public DeltaPokemon (String name, BattleStatsType[] statBoosted, Color color, float scale, Ribbon ribbon) {
 
         super(name, statBoosted, color, scale, ribbon);
 

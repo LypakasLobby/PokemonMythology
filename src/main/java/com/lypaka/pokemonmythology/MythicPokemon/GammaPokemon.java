@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class GammaPokemon extends MythicPokemon {
 
-    public GammaPokemon (String name, BattleStatsType statBoosted, Color color, float scale, Ribbon ribbon) {
+    public GammaPokemon (String name, BattleStatsType[] statBoosted, Color color, float scale, Ribbon ribbon) {
 
         super(name, statBoosted, color, scale, ribbon);
 
