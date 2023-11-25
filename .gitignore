@@ -17287,3 +17287,12 @@ build/tmp/expandedArchives/forge-1.16.5-36.2.39_mapped_snapshot_20210309-1.16.5-
 build/tmp/expandedArchives/forge-1.16.5-36.2.39_mapped_snapshot_20210309-1.16.5-sources.jar_2fb394b569dc6958e94113e29e38d5c8/net/minecraftforge/userdev/MCPNamingService.java
 build/tmp/expandedArchives/forge-1.16.5-36.2.39_mapped_snapshot_20210309-1.16.5-sources.jar_2fb394b569dc6958e94113e29e38d5c8/net/minecraftforge/versions/forge/ForgeVersion.java
 build/tmp/expandedArchives/forge-1.16.5-36.2.39_mapped_snapshot_20210309-1.16.5-sources.jar_2fb394b569dc6958e94113e29e38d5c8/net/minecraftforge/versions/mcp/MCPVersion.java
+.gradle/7.6.1/checksums/checksums.lock
+.gradle/7.6.1/executionHistory/executionHistory.bin
+.gradle/7.6.1/executionHistory/executionHistory.lock
+.gradle/7.6.1/fileHashes/fileHashes.bin
+.gradle/7.6.1/fileHashes/fileHashes.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/cache.properties
+.gradle/file-system.probe
+.idea/gradle.xml
