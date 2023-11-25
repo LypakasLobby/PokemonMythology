@@ -9,10 +9,8 @@ import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class MythicHandler {
 
@@ -21,7 +19,13 @@ public class MythicHandler {
 
     public static String getRandomMythic() {
 
-        return RandomHelper.getRandomElementFromList(mythicList);
+        List<String> options = new ArrayList<>(mythicList);
+        if (ConfigGetters.customMythics.size() > 0) {
+
+            options.addAll(ConfigGetters.customMythics.keySet());
+
+        }
+        return RandomHelper.getRandomElementFromList(options);
 
     }
 

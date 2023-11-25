@@ -73,6 +73,7 @@ public class RibbonHandler {
 
         if (ConfigGetters.customMythics.size() == 0) return;
         customMythicRibbons = new HashMap<>();
+        customMythicRibbonData = new HashMap<>();
         for (Map.Entry<String, Map<String, String>> entry : ConfigGetters.customMythics.entrySet()) {
 
             Map<String, String> data = entry.getValue();
