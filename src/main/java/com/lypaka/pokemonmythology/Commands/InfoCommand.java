@@ -2,13 +2,10 @@ package com.lypaka.pokemonmythology.Commands;
 
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.pokemonmythology.ConfigGetters;
-import com.lypaka.pokemonmythology.PokemonMythology;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
-import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.entity.player.ServerPlayerEntity;
 
 public class InfoCommand {

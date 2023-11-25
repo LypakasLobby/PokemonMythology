@@ -3,6 +3,7 @@ package com.lypaka.pokemonmythology.Commands;
 import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.PokemonMythology;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
+import com.pixelmonmod.pixelmon.api.command.PixelmonCommandUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -18,13 +19,17 @@ import java.util.List;
 public class PokemonMythologyCommand {
 
     public static final List<String> ALIASES = Arrays.asList("pokemonmythology", "pkmnmyth", "pm");
+    public static SuggestionProvider<CommandSource> POKEMON = (context, builder) -> ISuggestionProvider.suggest(PixelmonCommandUtils.tabCompletePokemon(), builder);
     public static SuggestionProvider<CommandSource> MYTHICS;
 
     @SubscribeEvent
     public static void onCommandRegistration (RegisterCommandsEvent event) {
 
+        new GiveCommand(event.getDispatcher());
         new InfoCommand(event.getDispatcher());
         new ReloadCommand(event.getDispatcher());
+        new StatueSetCommand(event.getDispatcher());
+        new SpawnCommand(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
         loadSuggestions();

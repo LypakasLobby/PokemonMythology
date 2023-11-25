@@ -9,8 +9,8 @@ import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class MythicHandler {
 
@@ -221,6 +221,12 @@ public class MythicHandler {
             pokemon.getStats().set(battleStat, updated);
 
         }
+
+    }
+
+    public static MythicPokemon getFromName (String name) {
+
+        return mythicMap.getOrDefault(name, null);
 
     }
 
