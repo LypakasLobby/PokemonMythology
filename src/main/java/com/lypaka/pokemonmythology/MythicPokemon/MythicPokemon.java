@@ -8,18 +8,22 @@ import java.awt.*;
 public abstract class MythicPokemon {
 
     private final String name;
-    private final BattleStatsType[] statBoosted;
+    private final BattleStatsType[] statsBoosted;
     private final Color color;
     private final float scale;
     private final Ribbon ribbon;
+    private final String displayName;
+    private final String informationText;
 
-    public MythicPokemon (String name, BattleStatsType[] statBoosted, Color color, float scale, Ribbon ribbon) {
+    public MythicPokemon (String name, BattleStatsType[] statsBoosted, Color color, float scale, Ribbon ribbon, String displayName, String informationText) {
 
         this.name = name;
-        this.statBoosted = statBoosted;
+        this.statsBoosted = statsBoosted;
         this.color = color;
         this.scale = scale;
         this.ribbon = ribbon;
+        this.displayName = displayName;
+        this.informationText = informationText;
 
     }
 
@@ -29,9 +33,9 @@ public abstract class MythicPokemon {
 
     }
 
-    public BattleStatsType[] getStatBoosted() {
+    public BattleStatsType[] getStatsBoosted() {
 
-        return this.statBoosted;
+        return this.statsBoosted;
 
     }
 
@@ -50,6 +54,18 @@ public abstract class MythicPokemon {
     public Ribbon getRibbon() {
 
         return this.ribbon;
+
+    }
+
+    public String getDisplayName() {
+
+        return this.displayName;
+
+    }
+
+    public String getInformationText() {
+
+        return this.informationText;
 
     }
 

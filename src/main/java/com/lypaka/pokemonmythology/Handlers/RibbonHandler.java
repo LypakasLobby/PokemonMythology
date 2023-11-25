@@ -7,6 +7,8 @@ import com.pixelmonmod.pixelmon.api.pokemon.ribbon.Ribbon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.RibbonRegistry;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RibbonHandler {
 
@@ -27,6 +29,9 @@ public class RibbonHandler {
     public static Ribbon sigmaRibbon;
     public static Ribbon thetaRibbon;
     public static Ribbon zetaRibbon;
+
+    public static Map<String, Ribbon> customMythicRibbons;
+    public static Map<String, MutableRibbonData> customMythicRibbonData;
 
     public static void loadRibbons() {
 
@@ -61,6 +66,24 @@ public class RibbonHandler {
         zetaRibbonData = new MutableRibbonData();
         zetaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Zeta")));
         zetaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), zetaRibbonData);
+
+    }
+
+    public static void loadCustomMythicRibbonData() {
+
+        if (ConfigGetters.customMythics.size() == 0) return;
+        customMythicRibbons = new HashMap<>();
+        for (Map.Entry<String, Map<String, String>> entry : ConfigGetters.customMythics.entrySet()) {
+
+            Map<String, String> data = entry.getValue();
+            String displayTitle = data.get("Display-Title");
+            MutableRibbonData ribbonData = new MutableRibbonData();
+            ribbonData.setPrefix(FancyText.getFormattedText(displayTitle));
+            Ribbon ribbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), ribbonData);
+            customMythicRibbons.put(entry.getKey(), ribbon);
+            customMythicRibbonData.put(entry.getKey(), ribbonData);
+
+        }
 
     }
 

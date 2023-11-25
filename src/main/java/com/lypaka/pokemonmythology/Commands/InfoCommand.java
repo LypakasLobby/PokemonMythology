@@ -2,6 +2,7 @@ package com.lypaka.pokemonmythology.Commands;
 
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.pokemonmythology.ConfigGetters;
+import com.lypaka.pokemonmythology.PokemonMythology;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
@@ -11,10 +12,6 @@ import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.entity.player.ServerPlayerEntity;
 
 public class InfoCommand {
-
-    private static SuggestionProvider<CommandSource> MYTHICS = (context, builder) -> ISuggestionProvider.suggest(
-            ConfigGetters.displayTitles.keySet()
-            , builder);
 
     public InfoCommand (CommandDispatcher<CommandSource> dispatcher) {
 
@@ -26,14 +23,23 @@ public class InfoCommand {
                                     Commands.literal("info")
                                             .then(
                                                     Commands.argument("mythic", StringArgumentType.string())
-                                                            .suggests(MYTHICS)
+                                                            .suggests(PokemonMythologyCommand.MYTHICS)
                                                             .executes(c -> {
 
                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
 
                                                                     ServerPlayerEntity player = (ServerPlayerEntity) c.getSource().getEntity();
                                                                     String mythic = StringArgumentType.getString(c, "mythic");
-                                                                    String message = ConfigGetters.infoTexts.get(mythic);
+                                                                    String message;// = ConfigGetters.infoTexts.get(mythic);
+                                                                    if (ConfigGetters.customMythics.containsKey(mythic)) {
+
+                                                                        message = ConfigGetters.customMythics.get(mythic).get("Information-Text");
+
+                                                                    } else {
+
+                                                                        message = ConfigGetters.infoTexts.get(mythic);
+
+                                                                    }
 
                                                                     player.sendMessage(FancyText.getFormattedText(message), player.getUniqueID());
 

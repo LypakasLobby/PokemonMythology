@@ -5,12 +5,13 @@ import com.pixelmonmod.pixelmon.api.pokemon.stats.BattleStatsType;
 
 import java.awt.*;
 
-public class DeltaPokemon extends MythicPokemon {
+public class CustomMythic extends MythicPokemon {
 
-    public DeltaPokemon (String name, BattleStatsType[] statsBoosted, Color color, float scale, Ribbon ribbon, String displayName, String informationText) {
+    public CustomMythic (String name, BattleStatsType[] statsBoosted, Color color, float scale, Ribbon ribbon, String displayName, String informationText) {
 
         super(name, statsBoosted, color, scale, ribbon, displayName, informationText);
 
     }
 
 }
+

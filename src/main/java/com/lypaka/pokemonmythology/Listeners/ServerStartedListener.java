@@ -15,6 +15,7 @@ public class ServerStartedListener {
     public static void onServerStarted (FMLServerStartedEvent event) {
 
         RibbonHandler.loadRibbons();
+        RibbonHandler.loadCustomMythicRibbonData();
         MythicHandler.loadMythics();
 
         Pixelmon.EVENT_BUS.register(new BreedListener());

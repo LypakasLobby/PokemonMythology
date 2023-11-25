@@ -27,7 +27,7 @@ public class PokemonMythology {
     public PokemonMythology() throws IOException, ObjectMappingException {
 
         Path dir = ConfigUtils.checkDir(Paths.get("./config/pokemonmythology"));
-        String[] files = new String[]{"pokemonMythology.conf"};
+        String[] files = new String[]{"pokemonMythology.conf", "customMythics.conf"};
         configManager = new BasicConfigManager(files, dir, PokemonMythology.class, MOD_NAME, MOD_ID, logger);
         configManager.init();
         ConfigGetters.load();

@@ -1,7 +1,6 @@
 package com.lypaka.pokemonmythology.Listeners;
 
 import com.lypaka.lypakautils.FancyText;
-import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
 import com.lypaka.pokemonmythology.MythicPokemon.MythicPokemon;
 import com.pixelmonmod.pixelmon.api.events.PixelmonUpdateEvent;
@@ -17,20 +16,16 @@ public class PixelmonUpdateListener {
         PixelmonEntity pixelmon = event.pokemon;
         Pokemon pokemon = pixelmon.getPokemon();
 
-        if (pokemon.getPersistentData().contains("Mythic")) {
+        if (!MythicHandler.isPokemonMythic(pokemon)) return;
+        MythicPokemon mythic = MythicHandler.getMythicFromPokemon(pokemon);
+        pixelmon.setPixelmonScale(mythic.getScale());
+        if (!pixelmon.hasOwner()) { // wild Pokemon, try to set ribbon data
 
-            String mythicName = pokemon.getPersistentData().getString("Mythic");
-            MythicPokemon mythic = MythicHandler.mythicMap.get(mythicName);
-            pixelmon.setPixelmonScale(mythic.getScale());
-            if (!pixelmon.hasOwner()) { // wild Pokemon, try to set ribbon data
+            pixelmon.setCustomName(FancyText.getFormattedText(mythic.getDisplayName() + pokemon.getSpecies().getName()));
 
-                pixelmon.setCustomName(FancyText.getFormattedText(ConfigGetters.displayTitles.get(mythic.getName()) + pokemon.getSpecies().getName()));
+        } else {
 
-            } else {
-
-                pixelmon.setColor(mythic.getColor());
-
-            }
+            pixelmon.setColor(mythic.getColor());
 
         }
 

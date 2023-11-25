@@ -16,7 +16,7 @@ public class LevelUpListener {
         if (MythicHandler.isPokemonMythic(pokemon)) {
 
             MythicPokemon mythic = MythicHandler.getMythicFromPokemon(pokemon);
-            MythicHandler.reapplyStatBoost(pokemon, mythic.getStatBoosted(), event.getAfterLevel());
+            MythicHandler.reapplyStatBoost(pokemon, mythic.getStatsBoosted(), event.getAfterLevel());
 
         }
 
@@ -29,7 +29,7 @@ public class LevelUpListener {
         if (MythicHandler.isPokemonMythic(pokemon)) {
 
             MythicPokemon mythic = MythicHandler.getMythicFromPokemon(pokemon);
-            MythicHandler.reapplyStatBoost(pokemon, mythic.getStatBoosted(), pokemon.getPokemonLevel());
+            MythicHandler.reapplyStatBoost(pokemon, mythic.getStatsBoosted(), pokemon.getPokemonLevel());
 
         }
 

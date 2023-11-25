@@ -41,7 +41,9 @@ public class ReloadCommand {
                                                     PokemonMythology.configManager.load();
                                                     ConfigGetters.load();
                                                     RibbonHandler.loadRibbons();
+                                                    RibbonHandler.loadCustomMythicRibbonData();
                                                     MythicHandler.loadMythics();
+                                                    PokemonMythologyCommand.loadSuggestions();
                                                     c.getSource().sendFeedback(FancyText.getFormattedText("&aSuccessfully reloaded PokemonMythology"), true);
 
                                                 } catch (ObjectMappingException e) {

@@ -15,6 +15,7 @@ public class ConfigGetters {
     public static Map<String, Color> tints;
     public static Map<String, Float> scales;
     public static double statModifier;
+    public static Map<String, Map<String, String>> customMythics;
 
     public static void load() throws ObjectMappingException {
 
@@ -32,6 +33,8 @@ public class ConfigGetters {
         }
         scales = PokemonMythology.configManager.getConfigNode(0, "Data", "Scale").getValue(new TypeToken<Map<String, Float>>() {});
         statModifier = PokemonMythology.configManager.getConfigNode(0, "Data", "Stat-Modifier").getDouble();
+
+        customMythics = PokemonMythology.configManager.getConfigNode(1, "Mythics").getValue(new TypeToken<Map<String, Map<String, String>>>() {});
 
     }
 
