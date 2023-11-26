@@ -23,11 +23,8 @@ public class PixelmonUpdateListener {
 
             pixelmon.setCustomName(FancyText.getFormattedText(mythic.getDisplayName() + pokemon.getSpecies().getName()));
 
-        } else {
-
-            pixelmon.setColor(mythic.getColor());
-
         }
+        pixelmon.setColor(mythic.getColor());
 
     }
 

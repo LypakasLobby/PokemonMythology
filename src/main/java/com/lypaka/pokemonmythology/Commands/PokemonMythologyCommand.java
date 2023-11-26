@@ -28,7 +28,6 @@ public class PokemonMythologyCommand {
         new GiveCommand(event.getDispatcher());
         new InfoCommand(event.getDispatcher());
         new ReloadCommand(event.getDispatcher());
-        new StatueSetCommand(event.getDispatcher());
         new SpawnCommand(event.getDispatcher());
 
         ConfigCommand.register(event.getDispatcher());
