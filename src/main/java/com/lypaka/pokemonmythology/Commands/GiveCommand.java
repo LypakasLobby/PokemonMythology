@@ -11,6 +11,7 @@ import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.PokemonBuilder;
 import com.pixelmonmod.pixelmon.api.storage.PlayerPartyStorage;
 import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
+import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -85,7 +86,7 @@ public class GiveCommand {
 
                                                                                                 ServerPlayerEntity target = EntityArgument.getPlayer(c, "player");
                                                                                                 Pokemon pokemon = PokemonBuilder.builder().species(StringArgumentType.getString(c, "pokemon")).build();
-                                                                                                pokemon.setLevel(5);
+                                                                                                pokemon.setLevel(RandomHelper.getRandomNumberBetween(pokemon.getForm().minLevel, pokemon.getForm().maxLevel));
                                                                                                 MythicPokemon mythic = MythicHandler.getFromName(StringArgumentType.getString(c, "mythic"));
                                                                                                 if (mythic == null) {
 
