@@ -13,6 +13,7 @@ import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
 
@@ -25,10 +26,12 @@ public class SpawnCommand {
             dispatcher.register(
                     Commands.literal(a)
                             .then(
-                                    Commands.argument("spawn", StringArgumentType.string())
+                                    Commands.literal("spawn")
                                             .then(
                                                     Commands.argument("mythic", StringArgumentType.string())
-                                                            .suggests(PokemonMythologyCommand.MYTHICS)
+                                                            .suggests(
+                                                                    (context, builder) -> ISuggestionProvider.suggest(MythicHandler.allMythics, builder)
+                                                            )
                                                             .then(
                                                                     Commands.argument("pokemon", StringArgumentType.string())
                                                                             .suggests(PokemonMythologyCommand.POKEMON)

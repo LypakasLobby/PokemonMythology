@@ -43,7 +43,7 @@ public class ReloadCommand {
                                                     RibbonHandler.loadRibbons();
                                                     RibbonHandler.loadCustomMythicRibbonData();
                                                     MythicHandler.loadMythics();
-                                                    PokemonMythologyCommand.loadSuggestions();
+                                                    MythicHandler.loadAllMythicsList();
                                                     c.getSource().sendFeedback(FancyText.getFormattedText("&aSuccessfully reloaded PokemonMythology"), true);
 
                                                 } catch (ObjectMappingException e) {

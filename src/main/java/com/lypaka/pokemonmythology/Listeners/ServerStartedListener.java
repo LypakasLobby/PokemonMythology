@@ -23,6 +23,8 @@ public class ServerStartedListener {
         Pixelmon.EVENT_BUS.register(new SpawnListener());
         Pixelmon.EVENT_BUS.register(new PixelmonUpdateListener());
 
+        MythicHandler.loadAllMythicsList();
+
     }
 
 }

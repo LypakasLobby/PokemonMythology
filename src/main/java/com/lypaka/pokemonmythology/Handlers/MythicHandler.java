@@ -16,6 +16,23 @@ public class MythicHandler {
 
     public static Map<String, MythicPokemon> mythicMap;
     public static List<String> mythicList = Arrays.asList("Alpha", "Beta", "Delta", "Gamma", "Omega", "Sigma", "Theta", "Zeta");
+    public static List<String> allMythics;
+
+    public static void loadAllMythicsList() {
+
+        allMythics = new ArrayList<>();
+        allMythics.addAll(mythicList);
+        if (ConfigGetters.customMythics.size() > 0) {
+
+            for (Map.Entry<String, Map<String, String>> entry : ConfigGetters.customMythics.entrySet()) {
+
+                allMythics.add(entry.getKey());
+
+            }
+
+        }
+
+    }
 
     public static String getRandomMythic() {
 

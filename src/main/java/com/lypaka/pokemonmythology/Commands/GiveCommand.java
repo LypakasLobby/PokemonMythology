@@ -2,6 +2,7 @@ package com.lypaka.pokemonmythology.Commands;
 
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
+import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
 import com.lypaka.pokemonmythology.MythicPokemon.MythicPokemon;
 import com.mojang.brigadier.CommandDispatcher;
@@ -14,8 +15,11 @@ import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
 import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
+import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
+
+import java.util.Arrays;
 
 public class GiveCommand {
 
@@ -34,7 +38,9 @@ public class GiveCommand {
                                                                             .suggests(PokemonMythologyCommand.POKEMON)
                                                                             .then(
                                                                                     Commands.argument("mythic", StringArgumentType.string())
-                                                                                            .suggests(PokemonMythologyCommand.MYTHICS)
+                                                                                            .suggests(
+                                                                                                    (context, builder) -> ISuggestionProvider.suggest(MythicHandler.allMythics, builder)
+                                                                                            )
                                                                                             .then(
                                                                                                     Commands.argument("level", IntegerArgumentType.integer(1, 100))
                                                                                                             .executes(c -> {
