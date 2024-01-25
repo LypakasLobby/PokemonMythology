@@ -31,10 +31,6 @@ public class ServerStartedListener {
         PokemonMythology.logger.warn("This mod breaks viewing Ribbons in a Pokemon's summary menu.");
         PokemonMythology.logger.warn("Like, if a player clicks the little Ribbon button in their Pokemon's summary menu, they will crash their client.");
         PokemonMythology.logger.warn("And there's literally nothing I can do about it. If I fix that, it breaks my Ribbons showing the Mythic title.");
-        PokemonMythology.logger.warn("And when I spoke to Pixelmon about it, I was told \"Its working as intended, that's a server-owner issue.\" because they are too lazy to fix Ribbons properly.");
-        PokemonMythology.logger.warn("And when I inquired for assistance in the Pixelmon Discord about said issue, I was ignored.");
-        PokemonMythology.logger.warn("So, I do apologize for the inconvenience, but my Mythics are better than looking at useless Ribbons anyway.");
-        PokemonMythology.logger.warn("Blame Pixelmon for wanting to release half-assed \"stable\" features they just flat out refuse to listen to being told are broken.");
 
     }
 
