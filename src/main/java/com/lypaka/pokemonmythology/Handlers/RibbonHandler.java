@@ -1,71 +1,43 @@
 package com.lypaka.pokemonmythology.Handlers;
 
 import com.lypaka.lypakautils.FancyText;
+import com.lypaka.lypakautils.MiscHandlers.SimplerRibbonBuilder;
 import com.lypaka.pokemonmythology.ConfigGetters;
+import com.pixelmonmod.pixelmon.Pixelmon;
+import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.MutableRibbonData;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.Ribbon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.RibbonRegistry;
+import com.pixelmonmod.pixelmon.api.util.ResourceWithFallback;
+import com.pixelmonmod.pixelmon.api.util.helpers.ResourceLocationHelper;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class RibbonHandler {
 
-    public static MutableRibbonData alphaRibbonData;
-    public static MutableRibbonData betaRibbonData;
-    public static MutableRibbonData deltaRibbonData;
-    public static MutableRibbonData gammaRibbonData;
-    public static MutableRibbonData omegaRibbonData;
-    public static MutableRibbonData sigmaRibbonData;
-    public static MutableRibbonData thetaRibbonData;
-    public static MutableRibbonData zetaRibbonData;
-
-    public static Ribbon alphaRibbon;
-    public static Ribbon betaRibbon;
-    public static Ribbon deltaRibbon;
-    public static Ribbon gammaRibbon;
-    public static Ribbon omegaRibbon;
-    public static Ribbon sigmaRibbon;
-    public static Ribbon thetaRibbon;
-    public static Ribbon zetaRibbon;
-
+    public static Map<String, MutableRibbonData> ribbonDataMap;
+    public static Map<String, Ribbon> ribbonMap;
     public static Map<String, Ribbon> customMythicRibbons;
     public static Map<String, MutableRibbonData> customMythicRibbonData;
 
     public static void loadRibbons() {
 
-        alphaRibbonData = new MutableRibbonData();
-        alphaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Alpha")));
-        alphaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), alphaRibbonData);
+        ribbonDataMap = new HashMap<>();
+        ribbonMap = new HashMap<>();
+        for (Map.Entry<String, String> displayTexts : ConfigGetters.displayTitles.entrySet()) {
 
-        betaRibbonData = new MutableRibbonData();
-        betaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Beta")));
-        betaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), betaRibbonData);
+            String key = displayTexts.getKey();
+            String value = displayTexts.getValue();
+            SimplerRibbonBuilder ribbonBuilder = new SimplerRibbonBuilder(value, "ability", ConfigGetters.infoTexts.get(key), value, "");
+            MutableRibbonData data = ribbonBuilder.create();
+            ribbonDataMap.put(key, data);
+            Ribbon ribbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), data);
+            ribbonMap.put(key, ribbon);
 
-        deltaRibbonData = new MutableRibbonData();
-        deltaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Delta")));
-        deltaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), deltaRibbonData);
-
-        gammaRibbonData = new MutableRibbonData();
-        gammaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Gamma")));
-        gammaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), gammaRibbonData);
-
-        omegaRibbonData = new MutableRibbonData();
-        omegaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Omega")));
-        omegaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), omegaRibbonData);
-
-        sigmaRibbonData = new MutableRibbonData();
-        sigmaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Sigma")));
-        sigmaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), sigmaRibbonData);
-
-        thetaRibbonData = new MutableRibbonData();
-        thetaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Theta")));
-        thetaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), thetaRibbonData);
-
-        zetaRibbonData = new MutableRibbonData();
-        zetaRibbonData.setPrefix(FancyText.getFormattedText(ConfigGetters.displayTitles.get("Zeta")));
-        zetaRibbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), zetaRibbonData);
+        }
 
     }
 
@@ -78,13 +50,56 @@ public class RibbonHandler {
 
             Map<String, String> data = entry.getValue();
             String displayTitle = data.get("Display-Title");
-            MutableRibbonData ribbonData = new MutableRibbonData();
-            ribbonData.setPrefix(FancyText.getFormattedText(displayTitle));
+            String icon = "ability";
+            SimplerRibbonBuilder builder = new SimplerRibbonBuilder(displayTitle, icon, displayTitle, displayTitle, "");
+            MutableRibbonData ribbonData = builder.create();
             Ribbon ribbon = new Ribbon(RibbonRegistry.SPECIAL.getKey(), LocalDateTime.now().getDayOfYear(), FancyText.getFormattedText(""), ribbonData);
             customMythicRibbons.put(entry.getKey(), ribbon);
             customMythicRibbonData.put(entry.getKey(), ribbonData);
 
         }
+
+    }
+
+    public static void fixOlderRibbonsIfNecessary (Pokemon pokemon) {
+
+        pokemon.getRibbons().removeIf(ribbon -> {
+
+            if (ribbon.getRibbonData().getIcon() == null) {
+
+                String ribbonTitle = ribbon.getRibbonData().getTitle().getString();
+                Ribbon fixedRibbon = getRibbonSafely(ribbonTitle);
+                if (fixedRibbon != null) {
+
+                    pokemon.getPersistentData().putBoolean("FixedRibbon", true);
+                    pokemon.addRibbon(fixedRibbon);
+                    return true;
+
+                }
+
+            }
+
+            return false;
+
+        });
+
+    }
+
+    private static Ribbon getRibbonSafely (String title) {
+
+        Ribbon ribbon = null;
+        for (Map.Entry<String, Ribbon> ribbons : RibbonHandler.ribbonMap.entrySet()) {
+
+            if (ribbons.getKey().equalsIgnoreCase(title) || ribbons.getKey().contains(title)) {
+
+                ribbon = ribbons.getValue();
+                break;
+
+            }
+
+        }
+
+        return ribbon;
 
     }
 

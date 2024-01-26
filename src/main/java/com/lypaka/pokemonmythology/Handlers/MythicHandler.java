@@ -77,7 +77,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.ATTACK},
                 ConfigGetters.tints.get("Alpha"),
                 ConfigGetters.scales.get("Alpha"),
-                RibbonHandler.alphaRibbon,
+                RibbonHandler.ribbonMap.get("Alpha"),
                 ConfigGetters.displayTitles.get("Alpha"),
                 ConfigGetters.infoTexts.get("Alpha")
         );
@@ -85,7 +85,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.SPECIAL_DEFENSE},
                 ConfigGetters.tints.get("Beta"),
                 ConfigGetters.scales.get("Beta"),
-                RibbonHandler.betaRibbon,
+                RibbonHandler.ribbonMap.get("Beta"),
                 ConfigGetters.displayTitles.get("Beta"),
                 ConfigGetters.infoTexts.get("Beta")
         );
@@ -93,7 +93,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.HP},
                 ConfigGetters.tints.get("Delta"),
                 ConfigGetters.scales.get("Delta"),
-                RibbonHandler.deltaRibbon,
+                RibbonHandler.ribbonMap.get("Delta"),
                 ConfigGetters.displayTitles.get("Delta"),
                 ConfigGetters.infoTexts.get("Delta")
         );
@@ -101,7 +101,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.SPEED},
                 ConfigGetters.tints.get("Gamma"),
                 ConfigGetters.scales.get("Gamma"),
-                RibbonHandler.gammaRibbon,
+                RibbonHandler.ribbonMap.get("Gamma"),
                 ConfigGetters.displayTitles.get("Gamma"),
                 ConfigGetters.infoTexts.get("Gamma")
         );
@@ -109,7 +109,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.SPECIAL_ATTACK},
                 ConfigGetters.tints.get("Omega"),
                 ConfigGetters.scales.get("Omega"),
-                RibbonHandler.omegaRibbon,
+                RibbonHandler.ribbonMap.get("Omega"),
                 ConfigGetters.displayTitles.get("Omega"),
                 ConfigGetters.infoTexts.get("Omega")
         );
@@ -117,7 +117,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.DEFENSE},
                 ConfigGetters.tints.get("Sigma"),
                 ConfigGetters.scales.get("Sigma"),
-                RibbonHandler.sigmaRibbon,
+                RibbonHandler.ribbonMap.get("Sigma"),
                 ConfigGetters.displayTitles.get("Sigma"),
                 ConfigGetters.infoTexts.get("Sigma")
         );
@@ -125,7 +125,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.EVASION},
                 ConfigGetters.tints.get("Theta"),
                 ConfigGetters.scales.get("Theta"),
-                RibbonHandler.thetaRibbon,
+                RibbonHandler.ribbonMap.get("Theta"),
                 ConfigGetters.displayTitles.get("Theta"),
                 ConfigGetters.infoTexts.get("Theta")
         );
@@ -133,7 +133,7 @@ public class MythicHandler {
                 new BattleStatsType[]{BattleStatsType.ACCURACY},
                 ConfigGetters.tints.get("Zeta"),
                 ConfigGetters.scales.get("Zeta"),
-                RibbonHandler.zetaRibbon,
+                RibbonHandler.ribbonMap.get("Zeta"),
                 ConfigGetters.displayTitles.get("Zeta"),
                 ConfigGetters.infoTexts.get("Zeta")
         );

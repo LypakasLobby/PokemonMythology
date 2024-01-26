@@ -2,11 +2,15 @@ package com.lypaka.pokemonmythology.Listeners;
 
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
+import com.lypaka.pokemonmythology.Handlers.RibbonHandler;
 import com.lypaka.pokemonmythology.MythicPokemon.MythicPokemon;
 import com.pixelmonmod.pixelmon.api.events.PixelmonUpdateEvent;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
+import com.pixelmonmod.pixelmon.api.pokemon.ribbon.Ribbon;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.Map;
 
 public class PixelmonUpdateListener {
 
@@ -25,6 +29,11 @@ public class PixelmonUpdateListener {
 
         }
         pixelmon.setColor(mythic.getColor());
+
+        // Hopefully fixes older versions of the mod's RibbonData
+        // This is just a little check as to not be looping over a Pokemon's Ribbons every tick if we've already fixed it
+        if (pokemon.getPersistentData().contains("FixedRibbon")) return;
+        RibbonHandler.fixOlderRibbonsIfNecessary(pokemon);
 
     }
 
