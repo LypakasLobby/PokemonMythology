@@ -20,10 +20,6 @@ public class PokemonMythology {
     public static final Logger logger = LogManager.getLogger("PokemonMythology");
     public static BasicConfigManager configManager;
 
-    /**
-     * Alpha, Beta, Gamma, Omega, Delta, Sigma
-     */
-
     public PokemonMythology() throws IOException, ObjectMappingException {
 
         Path dir = ConfigUtils.checkDir(Paths.get("./config/pokemonmythology"));

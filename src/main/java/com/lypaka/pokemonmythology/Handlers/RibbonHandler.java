@@ -3,11 +3,13 @@ package com.lypaka.pokemonmythology.Handlers;
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.lypakautils.MiscHandlers.SimplerRibbonBuilder;
 import com.lypaka.pokemonmythology.ConfigGetters;
+import com.lypaka.pokemonmythology.PokemonMythology;
 import com.pixelmonmod.pixelmon.Pixelmon;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.MutableRibbonData;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.Ribbon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.RibbonRegistry;
+import com.pixelmonmod.pixelmon.api.pokemon.ribbon.type.RibbonType;
 import com.pixelmonmod.pixelmon.api.util.ResourceWithFallback;
 import com.pixelmonmod.pixelmon.api.util.helpers.ResourceLocationHelper;
 
@@ -58,48 +60,6 @@ public class RibbonHandler {
             customMythicRibbonData.put(entry.getKey(), ribbonData);
 
         }
-
-    }
-
-    public static void fixOlderRibbonsIfNecessary (Pokemon pokemon) {
-
-        pokemon.getRibbons().removeIf(ribbon -> {
-
-            if (ribbon.getRibbonData().getIcon() == null) {
-
-                String ribbonTitle = ribbon.getRibbonData().getTitle().getString();
-                Ribbon fixedRibbon = getRibbonSafely(ribbonTitle);
-                if (fixedRibbon != null) {
-
-                    pokemon.getPersistentData().putBoolean("FixedRibbon", true);
-                    pokemon.addRibbon(fixedRibbon);
-                    return true;
-
-                }
-
-            }
-
-            return false;
-
-        });
-
-    }
-
-    private static Ribbon getRibbonSafely (String title) {
-
-        Ribbon ribbon = null;
-        for (Map.Entry<String, Ribbon> ribbons : RibbonHandler.ribbonMap.entrySet()) {
-
-            if (ribbons.getKey().equalsIgnoreCase(title) || ribbons.getKey().contains(title)) {
-
-                ribbon = ribbons.getValue();
-                break;
-
-            }
-
-        }
-
-        return ribbon;
 
     }
 

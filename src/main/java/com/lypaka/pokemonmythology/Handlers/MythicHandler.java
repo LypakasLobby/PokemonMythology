@@ -186,7 +186,7 @@ public class MythicHandler {
 
     }
 
-    public static void setPokemonToRandomMythic (PixelmonEntity pixelmon) {
+    public static void setPokemonToRandomMythic (PixelmonEntity pixelmon, boolean addBrokenAssRibbon, boolean spawn) {
 
         String mythic = getRandomMythic();
         MythicPokemon mythicPokemon = mythicMap.get(mythic);
@@ -198,14 +198,24 @@ public class MythicHandler {
         Pokemon pokemon = pixelmon.getPokemon();
         pixelmon.setPixelmonScale(scale);
         pixelmon.setColor(color);
-        pokemon.addRibbon(ribbon);
-        pokemon.setDisplayedRibbon(ribbon);
+        if (addBrokenAssRibbon) {
+
+            pokemon.addRibbon(ribbon);
+            pokemon.setDisplayedRibbon(ribbon);
+
+        }
         pokemon.getPersistentData().putString("Mythic", mythicPokemon.getName());
         for (BattleStatsType battleStat : battleStats) {
 
             int stat = pokemon.getStats().get(battleStat);
             int updated = (int) (stat * ConfigGetters.statModifier);
             pokemon.getStats().set(battleStat, updated);
+
+        }
+        if (spawn) {
+
+            pixelmon.setPixelmonScale(mythicPokemon.getScale());
+            pixelmon.setColor(mythicPokemon.getColor());
 
         }
 
@@ -223,13 +233,17 @@ public class MythicHandler {
 
     }
 
-    public static void setMythic (Pokemon pokemon, MythicPokemon mythic) {
+    public static void setMythic (Pokemon pokemon, MythicPokemon mythic, boolean addBrokenAssRibbon) {
 
         Ribbon ribbon = mythic.getRibbon();
         BattleStatsType[] battleStats = mythic.getStatsBoosted();
 
-        pokemon.addRibbon(ribbon);
-        pokemon.setDisplayedRibbon(ribbon);
+        if (addBrokenAssRibbon) {
+
+            pokemon.addRibbon(ribbon);
+            pokemon.setDisplayedRibbon(ribbon);
+
+        }
         pokemon.getPersistentData().putString("Mythic", mythic.getName());
         for (BattleStatsType battleStat : battleStats) {
 
@@ -243,7 +257,45 @@ public class MythicHandler {
 
     public static MythicPokemon getFromName (String name) {
 
-        return mythicMap.getOrDefault(name, null);
+        MythicPokemon pokemon = null;
+        for (Map.Entry<String, MythicPokemon> entry : mythicMap.entrySet()) {
+
+            if (entry.getKey().equalsIgnoreCase(name)) {
+
+                pokemon = entry.getValue();
+                break;
+
+            }
+
+        }
+        return pokemon;
+
+    }
+
+    public static void temporarilySlapBrokenAssRibbonOnPokemon (MythicPokemon mythic, PixelmonEntity pixelmon) {
+
+        temporarilySlapBrokenAssRibbonOnPokemon(mythic, pixelmon.getPokemon());
+
+    }
+
+    public static void temporarilySlapBrokenAssRibbonOnPokemon (MythicPokemon mythic, Pokemon pokemon) {
+
+        Ribbon ribbon = mythic.getRibbon();
+        pokemon.addRibbon(ribbon);
+        pokemon.setDisplayedRibbon(ribbon);
+
+    }
+
+    public static void removeBrokenAssRibbonSoModDoesntCrash (MythicPokemon mythic, PixelmonEntity pixelmon) {
+
+        removeBrokenAssRibbonSoModDoesntCrash(mythic, pixelmon.getPokemon());
+
+    }
+
+    public static void removeBrokenAssRibbonSoModDoesntCrash (MythicPokemon mythic, Pokemon pokemon) {
+
+        Ribbon ribbon = mythic.getRibbon();
+        pokemon.removeRibbon(ribbon);
 
     }
 

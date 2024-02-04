@@ -15,6 +15,7 @@ public class ConfigGetters {
     public static Map<String, Color> tints;
     public static Map<String, Float> scales;
     public static double statModifier;
+    public static boolean disclaimer;
     public static Map<String, Map<String, String>> customMythics;
 
     public static void load() throws ObjectMappingException {
@@ -33,6 +34,18 @@ public class ConfigGetters {
         }
         scales = PokemonMythology.configManager.getConfigNode(0, "Data", "Scale").getValue(new TypeToken<Map<String, Float>>() {});
         statModifier = PokemonMythology.configManager.getConfigNode(0, "Data", "Stat-Modifier").getDouble();
+        if (PokemonMythology.configManager.getConfigNode(0, "Disclaimer").isVirtual()) {
+
+            disclaimer = false;
+            PokemonMythology.configManager.getConfigNode(0, "Disclaimer").setValue(false);
+            PokemonMythology.configManager.getConfigNode(0, "Disclaimer").setComment("This disclaimer just means that I am not responsible for the client sided crashes that occur when Pixelmon's broken ass Ribbons are being viewed in the Ribbon summary GUI. Set to true to enable the mod's functions which also means you agree to the terms.");
+            PokemonMythology.configManager.save();
+
+        } else {
+
+            disclaimer = PokemonMythology.configManager.getConfigNode(0, "Disclaimer").getBoolean();
+
+        }
 
         customMythics = PokemonMythology.configManager.getConfigNode(1, "Mythics").getValue(new TypeToken<Map<String, Map<String, String>>>() {});
 

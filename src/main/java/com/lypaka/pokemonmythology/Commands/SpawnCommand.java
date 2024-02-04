@@ -2,6 +2,7 @@ package com.lypaka.pokemonmythology.Commands;
 
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.lypakautils.MiscHandlers.PermissionHandler;
+import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
 import com.lypaka.pokemonmythology.MythicPokemon.MythicPokemon;
 import com.mojang.brigadier.CommandDispatcher;
@@ -41,6 +42,14 @@ public class SpawnCommand {
                                                                                                     Commands.argument("level", IntegerArgumentType.integer(1, 100))
                                                                                                             .executes(c -> {
 
+                                                                                                                if (!ConfigGetters.disclaimer) {
+
+                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cDisclaimer is not agreed to!"));
+                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cGo in \"/config/pokemonmythology/pokemonmythology.conf\" and set the disclaimer node to true to be able to use this command!"));
+                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cAfter changing that configuration node, run \"/pkmnmyth reload\" to apply the changes and enable the mod."));
+                                                                                                                    return 1;
+
+                                                                                                                }
                                                                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
 
                                                                                                                     ServerPlayerEntity player = (ServerPlayerEntity) c.getSource().getEntity();
@@ -64,7 +73,7 @@ public class SpawnCommand {
                                                                                                                     return 0;
 
                                                                                                                 }
-                                                                                                                MythicHandler.setMythic(pokemon, mythic);
+                                                                                                                MythicHandler.setMythic(pokemon, mythic, true);
                                                                                                                 double x = target.getPosX() + 0.5;
                                                                                                                 double y = target.getPosY();
                                                                                                                 double z = target.getPosZ() + 0.5;
@@ -78,6 +87,14 @@ public class SpawnCommand {
                                                                                             )
                                                                                             .executes(c -> {
 
+                                                                                                if (!ConfigGetters.disclaimer) {
+
+                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cDisclaimer is not agreed to!"));
+                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cGo in \"/config/pokemonmythology/pokemonmythology.conf\" and set the disclaimer node to true to be able to use this command!"));
+                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cAfter changing that configuration node, run \"/pkmnmyth reload\" to apply the changes and enable the mod."));
+                                                                                                    return 1;
+
+                                                                                                }
                                                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
 
                                                                                                     ServerPlayerEntity player = (ServerPlayerEntity) c.getSource().getEntity();
@@ -101,7 +118,7 @@ public class SpawnCommand {
                                                                                                     return 0;
 
                                                                                                 }
-                                                                                                MythicHandler.setMythic(pokemon, mythic);
+                                                                                                MythicHandler.setMythic(pokemon, mythic, true);
                                                                                                 double x = target.getPosX() + 0.5;
                                                                                                 double y = target.getPosY();
                                                                                                 double z = target.getPosZ() + 0.5;

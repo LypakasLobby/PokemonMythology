@@ -1,13 +1,18 @@
 package com.lypaka.pokemonmythology.Listeners;
 
 import com.lypaka.lypakautils.FancyText;
+import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
 import com.lypaka.pokemonmythology.Handlers.RibbonHandler;
 import com.lypaka.pokemonmythology.MythicPokemon.MythicPokemon;
+import com.lypaka.pokemonmythology.PokemonMythology;
 import com.pixelmonmod.pixelmon.api.events.PixelmonUpdateEvent;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.Ribbon;
+import com.pixelmonmod.pixelmon.comm.EnumUpdateType;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
+import com.pixelmonmod.pixelmon.items.UIElementItem;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Map;
@@ -21,6 +26,14 @@ public class PixelmonUpdateListener {
         Pokemon pokemon = pixelmon.getPokemon();
 
         if (!MythicHandler.isPokemonMythic(pokemon)) return;
+        if (!ConfigGetters.disclaimer) {
+
+            PokemonMythology.logger.info(FancyText.getFormattedText("&cDisclaimer is not agreed to!"));
+            PokemonMythology.logger.info(FancyText.getFormattedText("&cGo in \"/config/pokemonmythology/pokemonmythology.conf\" and set the disclaimer node to true!"));
+            PokemonMythology.logger.info(FancyText.getFormattedText("&cAfter changing that configuration node, run \"/pkmnmyth reload\" to apply the changes and enable the mod."));
+            return;
+
+        }
         MythicPokemon mythic = MythicHandler.getMythicFromPokemon(pokemon);
         pixelmon.setPixelmonScale(mythic.getScale());
         if (!pixelmon.hasOwner()) { // wild Pokemon, try to set ribbon data
@@ -29,11 +42,12 @@ public class PixelmonUpdateListener {
 
         }
         pixelmon.setColor(mythic.getColor());
+        if (!pokemon.getRibbons().contains(mythic.getRibbon())) {
 
-        // Hopefully fixes older versions of the mod's RibbonData
-        // This is just a little check as to not be looping over a Pokemon's Ribbons every tick if we've already fixed it
-        if (pokemon.getPersistentData().contains("FixedRibbon")) return;
-        RibbonHandler.fixOlderRibbonsIfNecessary(pokemon);
+            pokemon.addRibbon(mythic.getRibbon());
+            pokemon.setDisplayedRibbon(mythic.getRibbon());
+
+        }
 
     }
 

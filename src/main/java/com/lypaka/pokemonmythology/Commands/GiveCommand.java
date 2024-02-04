@@ -45,6 +45,14 @@ public class GiveCommand {
                                                                                                     Commands.argument("level", IntegerArgumentType.integer(1, 100))
                                                                                                             .executes(c -> {
 
+                                                                                                                if (!ConfigGetters.disclaimer) {
+
+                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cDisclaimer is not agreed to!"));
+                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cGo in \"/config/pokemonmythology/pokemonmythology.conf\" and set the disclaimer node to true to be able to use this command!"));
+                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cAfter changing that configuration node, run \"/pkmnmyth reload\" to apply the changes and enable the mod."));
+                                                                                                                    return 1;
+
+                                                                                                                }
                                                                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
 
                                                                                                                     ServerPlayerEntity player = (ServerPlayerEntity) c.getSource().getEntity();
@@ -67,7 +75,7 @@ public class GiveCommand {
                                                                                                                     return 0;
 
                                                                                                                 }
-                                                                                                                MythicHandler.setMythic(pokemon, mythic);
+                                                                                                                MythicHandler.setMythic(pokemon, mythic, false);
                                                                                                                 PlayerPartyStorage storage = StorageProxy.getParty(target);
                                                                                                                 storage.add(pokemon);
                                                                                                                 c.getSource().sendFeedback(FancyText.getFormattedText("&aSuccessfully gave " + target.getName().getString() + " a " + mythic.getName() + " " + pokemon.getSpecies().getName()), true);
@@ -78,6 +86,14 @@ public class GiveCommand {
                                                                                             )
                                                                                             .executes(c -> {
 
+                                                                                                if (!ConfigGetters.disclaimer) {
+
+                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cDisclaimer is not agreed to!"));
+                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cGo in \"/config/pokemonmythology/pokemonmythology.conf\" and set the disclaimer node to true to be able to use this command!"));
+                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cAfter changing that configuration node, run \"/pkmnmyth reload\" to apply the changes and enable the mod."));
+                                                                                                    return 1;
+
+                                                                                                }
                                                                                                 if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
 
                                                                                                     ServerPlayerEntity player = (ServerPlayerEntity) c.getSource().getEntity();
@@ -100,7 +116,7 @@ public class GiveCommand {
                                                                                                     return 0;
 
                                                                                                 }
-                                                                                                MythicHandler.setMythic(pokemon, mythic);
+                                                                                                MythicHandler.setMythic(pokemon, mythic, false);
                                                                                                 PlayerPartyStorage storage = StorageProxy.getParty(target);
                                                                                                 storage.add(pokemon);
                                                                                                 c.getSource().sendFeedback(FancyText.getFormattedText("&aSuccessfully gave " + target.getName().getString() + " a " + mythic.getName() + " " + pokemon.getSpecies().getName()), true);

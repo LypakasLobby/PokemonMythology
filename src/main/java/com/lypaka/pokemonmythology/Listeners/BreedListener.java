@@ -1,9 +1,12 @@
 package com.lypaka.pokemonmythology.Listeners;
 
+import com.lypaka.lypakautils.FancyText;
 import com.lypaka.pokemonmythology.API.MythicBreedEvent;
+import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.Handlers.BreedHandler;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
 import com.lypaka.pokemonmythology.MythicPokemon.MythicPokemon;
+import com.lypaka.pokemonmythology.PokemonMythology;
 import com.pixelmonmod.pixelmon.api.daycare.event.DayCareEvent;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -21,12 +24,25 @@ public class BreedListener {
         Pokemon child = event.getChildGiven();
         MythicPokemon mythic = BreedHandler.getMythicPassedDown(event.getParentOne(), event.getParentTwo());
 
-        MythicBreedEvent breedEvent = new MythicBreedEvent(player, parent1, parent2, child, mythic);
-        MinecraftForge.EVENT_BUS.post(breedEvent);
+        if (mythic != null) {
 
-        if (!breedEvent.isCanceled()) {
+            if (!ConfigGetters.disclaimer) {
 
-            MythicHandler.setMythic(breedEvent.getChild(), breedEvent.getMythic());
+                PokemonMythology.logger.info(FancyText.getFormattedText("&cDisclaimer is not agreed to!"));
+                PokemonMythology.logger.info(FancyText.getFormattedText("&cGo in \"/config/pokemonmythology/pokemonmythology.conf\" and set the disclaimer node to true!"));
+                PokemonMythology.logger.info(FancyText.getFormattedText("&cAfter changing that configuration node, run \"/pkmnmyth reload\" to apply the changes and enable the mod."));
+                return;
+
+            }
+
+            MythicBreedEvent breedEvent = new MythicBreedEvent(player, parent1, parent2, child, mythic);
+            MinecraftForge.EVENT_BUS.post(breedEvent);
+
+            if (!breedEvent.isCanceled()) {
+
+                MythicHandler.setMythic(breedEvent.getChild(), breedEvent.getMythic(), false);
+
+            }
 
         }
 
