@@ -20,17 +20,35 @@ public class BreedHandler {
         // We want to pass down Mythic from Mom by default, but if Dad is holding Mystic Water pass down Mythic from him
         if (parent1.getGender() == Gender.MALE) {
 
-            if (parent1.getHeldItemAsItemHeld().getItem().getRegistryName().toString().equalsIgnoreCase("pixelmon:mystic_water")) {
+            // a null check would be the most logical thing to do here...but its Pixelmon....so try/catch it is. Not giving them the chance to fuck up even something as simple as a null check
+            try {
 
-                mythic = MythicHandler.getMythicFromPokemon(parent1);
+                if (parent1.getHeldItemAsItemHeld().getItem().getRegistryName().toString().equalsIgnoreCase("pixelmon:mystic_water")) {
+
+                    mythic = MythicHandler.getMythicFromPokemon(parent1);
+
+                }
+
+            } catch (NullPointerException e) {
+
+
 
             }
 
+
         } else if (parent2.getGender() == Gender.MALE) {
 
-            if (parent2.getHeldItemAsItemHeld().getItem().getRegistryName().toString().equalsIgnoreCase("pixelmon:mystic_water")) {
+            try {
 
-                mythic = MythicHandler.getMythicFromPokemon(parent2);
+                if (parent2.getHeldItemAsItemHeld().getItem().getRegistryName().toString().equalsIgnoreCase("pixelmon:mystic_water")) {
+
+                    mythic = MythicHandler.getMythicFromPokemon(parent2);
+
+                }
+
+            } catch (NullPointerException e) {
+
+
 
             }
 
