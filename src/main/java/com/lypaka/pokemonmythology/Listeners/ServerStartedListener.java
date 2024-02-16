@@ -26,6 +26,7 @@ public class ServerStartedListener {
         Pixelmon.EVENT_BUS.register(new SpawnListener());
         Pixelmon.EVENT_BUS.register(new PixelmonUpdateListener());
         Pixelmon.EVENT_BUS.register(new RecallListener());
+        Pixelmon.EVENT_BUS.register(new CaptureListener());
 
         PokemonMythology.logger.warn("------------------WARNING------------------");
         PokemonMythology.logger.warn("------------------WARNING------------------");
