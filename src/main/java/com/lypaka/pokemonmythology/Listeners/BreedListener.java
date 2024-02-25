@@ -24,7 +24,7 @@ public class BreedListener {
         Pokemon child = event.getChildGiven();
         MythicPokemon mythic = BreedHandler.getMythicPassedDown(event.getParentOne(), event.getParentTwo());
 
-        if (mythic != null) {
+        if (child != null && mythic != null) {
 
             if (!ConfigGetters.disclaimer) {
 
