@@ -9,17 +9,13 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
-import com.pixelmonmod.pixelmon.api.pokemon.PokemonBuilder;
 import com.pixelmonmod.pixelmon.api.storage.PlayerPartyStorage;
 import com.pixelmonmod.pixelmon.api.storage.StorageProxy;
-import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.ISuggestionProvider;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.ServerPlayerEntity;
-
-import java.util.Arrays;
 
 public class GiveCommand {
 
@@ -66,8 +62,6 @@ public class GiveCommand {
                                                                                                                 }
 
                                                                                                                 ServerPlayerEntity target = EntityArgument.getPlayer(c, "player");
-                                                                                                                Pokemon pokemon = PokemonBuilder.builder().species(StringArgumentType.getString(c, "pokemon")).build();
-                                                                                                                pokemon.setLevel(IntegerArgumentType.getInteger(c, "level"));
                                                                                                                 MythicPokemon mythic = MythicHandler.getFromName(StringArgumentType.getString(c, "mythic"));
                                                                                                                 if (mythic == null) {
 
@@ -75,7 +69,7 @@ public class GiveCommand {
                                                                                                                     return 0;
 
                                                                                                                 }
-                                                                                                                MythicHandler.setMythic(pokemon, mythic, false);
+                                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), IntegerArgumentType.getInteger(c, "level"));
                                                                                                                 PlayerPartyStorage storage = StorageProxy.getParty(target);
                                                                                                                 storage.add(pokemon);
                                                                                                                 c.getSource().sendFeedback(FancyText.getFormattedText("&aSuccessfully gave " + target.getName().getString() + " a " + mythic.getName() + " " + pokemon.getSpecies().getName()), true);
@@ -107,8 +101,6 @@ public class GiveCommand {
                                                                                                 }
 
                                                                                                 ServerPlayerEntity target = EntityArgument.getPlayer(c, "player");
-                                                                                                Pokemon pokemon = PokemonBuilder.builder().species(StringArgumentType.getString(c, "pokemon")).build();
-                                                                                                pokemon.setLevel(RandomHelper.getRandomNumberBetween(pokemon.getForm().minLevel, pokemon.getForm().maxLevel));
                                                                                                 MythicPokemon mythic = MythicHandler.getFromName(StringArgumentType.getString(c, "mythic"));
                                                                                                 if (mythic == null) {
 
@@ -116,7 +108,7 @@ public class GiveCommand {
                                                                                                     return 0;
 
                                                                                                 }
-                                                                                                MythicHandler.setMythic(pokemon, mythic, false);
+                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), 0);
                                                                                                 PlayerPartyStorage storage = StorageProxy.getParty(target);
                                                                                                 storage.add(pokemon);
                                                                                                 c.getSource().sendFeedback(FancyText.getFormattedText("&aSuccessfully gave " + target.getName().getString() + " a " + mythic.getName() + " " + pokemon.getSpecies().getName()), true);

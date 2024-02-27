@@ -3,19 +3,12 @@ package com.lypaka.pokemonmythology.Listeners;
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
-import com.lypaka.pokemonmythology.Handlers.RibbonHandler;
 import com.lypaka.pokemonmythology.MythicPokemon.MythicPokemon;
 import com.lypaka.pokemonmythology.PokemonMythology;
 import com.pixelmonmod.pixelmon.api.events.PixelmonUpdateEvent;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
-import com.pixelmonmod.pixelmon.api.pokemon.ribbon.Ribbon;
-import com.pixelmonmod.pixelmon.comm.EnumUpdateType;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
-import com.pixelmonmod.pixelmon.items.UIElementItem;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.Map;
 
 public class PixelmonUpdateListener {
 

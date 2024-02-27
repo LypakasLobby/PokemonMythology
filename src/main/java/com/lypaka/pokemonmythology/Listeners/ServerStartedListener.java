@@ -1,7 +1,5 @@
 package com.lypaka.pokemonmythology.Listeners;
 
-import com.lypaka.lypakautils.FancyText;
-import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.Handlers.MythicHandler;
 import com.lypaka.pokemonmythology.Handlers.RibbonHandler;
 import com.lypaka.pokemonmythology.PokemonMythology;

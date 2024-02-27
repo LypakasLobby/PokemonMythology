@@ -9,8 +9,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
-import com.pixelmonmod.pixelmon.api.pokemon.PokemonBuilder;
-import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -63,9 +61,7 @@ public class SpawnCommand {
                                                                                                                 }
 
                                                                                                                 ServerPlayerEntity target = EntityArgument.getPlayer(c, "player");
-                                                                                                                Pokemon pokemon = PokemonBuilder.builder().species(StringArgumentType.getString(c, "pokemon")).build();
                                                                                                                 int level = IntegerArgumentType.getInteger(c, "level");
-                                                                                                                pokemon.setLevel(level);
                                                                                                                 MythicPokemon mythic = MythicHandler.getFromName(StringArgumentType.getString(c, "mythic"));
                                                                                                                 if (mythic == null) {
 
@@ -73,7 +69,7 @@ public class SpawnCommand {
                                                                                                                     return 0;
 
                                                                                                                 }
-                                                                                                                MythicHandler.setMythic(pokemon, mythic, true);
+                                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), level);
                                                                                                                 double x = target.getPosX() + 0.5;
                                                                                                                 double y = target.getPosY();
                                                                                                                 double z = target.getPosZ() + 0.5;
@@ -108,9 +104,6 @@ public class SpawnCommand {
                                                                                                 }
 
                                                                                                 ServerPlayerEntity target = EntityArgument.getPlayer(c, "player");
-                                                                                                Pokemon pokemon = PokemonBuilder.builder().species(StringArgumentType.getString(c, "pokemon")).build();
-                                                                                                int level = RandomHelper.getRandomNumberBetween(pokemon.getForm().minLevel, pokemon.getForm().maxLevel);
-                                                                                                pokemon.setLevel(level);
                                                                                                 MythicPokemon mythic = MythicHandler.getFromName(StringArgumentType.getString(c, "mythic"));
                                                                                                 if (mythic == null) {
 
@@ -118,7 +111,7 @@ public class SpawnCommand {
                                                                                                     return 0;
 
                                                                                                 }
-                                                                                                MythicHandler.setMythic(pokemon, mythic, true);
+                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), 0);
                                                                                                 double x = target.getPosX() + 0.5;
                                                                                                 double y = target.getPosY();
                                                                                                 double z = target.getPosZ() + 0.5;

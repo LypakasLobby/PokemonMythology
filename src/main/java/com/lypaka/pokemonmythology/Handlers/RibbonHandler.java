@@ -3,19 +3,12 @@ package com.lypaka.pokemonmythology.Handlers;
 import com.lypaka.lypakautils.FancyText;
 import com.lypaka.lypakautils.MiscHandlers.SimplerRibbonBuilder;
 import com.lypaka.pokemonmythology.ConfigGetters;
-import com.lypaka.pokemonmythology.PokemonMythology;
-import com.pixelmonmod.pixelmon.Pixelmon;
-import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.MutableRibbonData;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.Ribbon;
 import com.pixelmonmod.pixelmon.api.pokemon.ribbon.RibbonRegistry;
-import com.pixelmonmod.pixelmon.api.pokemon.ribbon.type.RibbonType;
-import com.pixelmonmod.pixelmon.api.util.ResourceWithFallback;
-import com.pixelmonmod.pixelmon.api.util.helpers.ResourceLocationHelper;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class RibbonHandler {
