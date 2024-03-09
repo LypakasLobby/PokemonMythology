@@ -20,11 +20,13 @@ public class ServerStartedListener {
         MythicHandler.loadAllMythicsList();
 
         Pixelmon.EVENT_BUS.register(new BreedListener());
+        Pixelmon.EVENT_BUS.register(new CaptureListener());
+        Pixelmon.EVENT_BUS.register(new EvolutionListener());
         Pixelmon.EVENT_BUS.register(new LevelUpListener());
-        Pixelmon.EVENT_BUS.register(new SpawnListener());
+        Pixelmon.EVENT_BUS.register(new KillListener());
         Pixelmon.EVENT_BUS.register(new PixelmonUpdateListener());
         Pixelmon.EVENT_BUS.register(new RecallListener());
-        Pixelmon.EVENT_BUS.register(new CaptureListener());
+        Pixelmon.EVENT_BUS.register(new SpawnListener());
 
         PokemonMythology.logger.warn("------------------WARNING------------------");
         PokemonMythology.logger.warn("------------------WARNING------------------");

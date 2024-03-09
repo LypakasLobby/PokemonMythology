@@ -38,6 +38,52 @@ public class SpawnCommand {
                                                                                     Commands.argument("player", EntityArgument.player())
                                                                                             .then(
                                                                                                     Commands.argument("level", IntegerArgumentType.integer(1, 100))
+                                                                                                            .then(
+                                                                                                                    Commands.argument("palette", StringArgumentType.word())
+                                                                                                                            .executes(c -> {
+
+                                                                                                                                if (!ConfigGetters.disclaimer) {
+
+                                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cDisclaimer is not agreed to!"));
+                                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cGo in \"/config/pokemonmythology/pokemonmythology.conf\" and set the disclaimer node to true to be able to use this command!"));
+                                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cAfter changing that configuration node, run \"/pkmnmyth reload\" to apply the changes and enable the mod."));
+                                                                                                                                    return 1;
+
+                                                                                                                                }
+                                                                                                                                if (c.getSource().getEntity() instanceof ServerPlayerEntity) {
+
+                                                                                                                                    ServerPlayerEntity player = (ServerPlayerEntity) c.getSource().getEntity();
+                                                                                                                                    if (!PermissionHandler.hasPermission(player, "pokemonmythology.command.admin")) {
+
+                                                                                                                                        player.sendMessage(FancyText.getFormattedText("&cYou don't have permission to use this command!"), player.getUniqueID());
+                                                                                                                                        return 0;
+
+                                                                                                                                    }
+
+                                                                                                                                }
+
+                                                                                                                                ServerPlayerEntity target = EntityArgument.getPlayer(c, "player");
+                                                                                                                                int level = IntegerArgumentType.getInteger(c, "level");
+                                                                                                                                MythicPokemon mythic = MythicHandler.getFromName(StringArgumentType.getString(c, "mythic"));
+                                                                                                                                if (mythic == null) {
+
+                                                                                                                                    c.getSource().sendErrorMessage(FancyText.getFormattedText("&cInvalid Mythic name!"));
+                                                                                                                                    return 0;
+
+                                                                                                                                }
+                                                                                                                                String palette = StringArgumentType.getString(c, "palette");
+                                                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), level, palette);
+                                                                                                                                double x = target.getPosX() + 0.5;
+                                                                                                                                double y = target.getPosY();
+                                                                                                                                double z = target.getPosZ() + 0.5;
+                                                                                                                                PixelmonEntity pixelmon = pokemon.getOrSpawnPixelmon(target.world, x, y, z);
+                                                                                                                                pixelmon.setSpawnLocation(pixelmon.getDefaultSpawnLocation());
+                                                                                                                                target.world.addEntity(pixelmon);
+                                                                                                                                c.getSource().sendFeedback(FancyText.getFormattedText("&aSuccessfully spawned a " + mythic.getName() + " " + pokemon.getSpecies().getName() + " on " + target.getName().getString()), true);
+                                                                                                                                return 1;
+
+                                                                                                                            })
+                                                                                                            )
                                                                                                             .executes(c -> {
 
                                                                                                                 if (!ConfigGetters.disclaimer) {
@@ -69,7 +115,7 @@ public class SpawnCommand {
                                                                                                                     return 0;
 
                                                                                                                 }
-                                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), level);
+                                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), level, "");
                                                                                                                 double x = target.getPosX() + 0.5;
                                                                                                                 double y = target.getPosY();
                                                                                                                 double z = target.getPosZ() + 0.5;
@@ -111,7 +157,7 @@ public class SpawnCommand {
                                                                                                     return 0;
 
                                                                                                 }
-                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), 0);
+                                                                                                Pokemon pokemon = MythicHandler.buildMythicPokemon(StringArgumentType.getString(c, "pokemon"), mythic.getName(), 0, "");
                                                                                                 double x = target.getPosX() + 0.5;
                                                                                                 double y = target.getPosY();
                                                                                                 double z = target.getPosZ() + 0.5;

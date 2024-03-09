@@ -15,7 +15,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 group = 'com.lypaka'
-version = '1.16.5-2.0.2'
+version = '1.16.5-2.0.3'
 
 java {
     archivesBaseName = 'PokemonMythology'

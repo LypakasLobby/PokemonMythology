@@ -1,5 +1,6 @@
 package com.lypaka.pokemonmythology.Handlers;
 
+import com.lypaka.lypakautils.MiscHandlers.PixelmonHelpers;
 import com.lypaka.pokemonmythology.ConfigGetters;
 import com.lypaka.pokemonmythology.MythicPokemon.*;
 import com.pixelmonmod.pixelmon.api.pokemon.Pokemon;
@@ -9,6 +10,7 @@ import com.pixelmonmod.pixelmon.api.pokemon.species.gender.Gender;
 import com.pixelmonmod.pixelmon.api.pokemon.stats.BattleStatsType;
 import com.pixelmonmod.pixelmon.api.registries.PixelmonSpecies;
 import com.pixelmonmod.pixelmon.api.util.helpers.RandomHelper;
+import com.pixelmonmod.pixelmon.comm.EnumUpdateType;
 import com.pixelmonmod.pixelmon.entities.pixelmon.PixelmonEntity;
 
 import java.awt.*;
@@ -74,46 +76,11 @@ public class MythicHandler {
 
     }
 
-    public static Pokemon buildMythicPokemon (String species, String mythic, int level) {
+    public static Pokemon buildMythicPokemon (String species, String mythic, int level, String palette) {
 
         Pokemon pokemon = PokemonBuilder.builder()
                 .species(species)
                 .build();
-        pokemon.setGender(Gender.getRandomGender(pokemon.getForm()));
-        int[] ivs = new int[6];
-        int perfectCount = 0;
-        for (int i = 0; i < 6; i++) {
-
-            int value = RandomHelper.getRandomNumberBetween(1, 31);
-            if (value == 31) perfectCount++;
-
-        }
-        if (PixelmonSpecies.isLegendary(pokemon.getSpecies()) || PixelmonSpecies.isMythical(pokemon.getSpecies()) || PixelmonSpecies.isUltraBeast(pokemon.getSpecies())) {
-
-            if (perfectCount < 3) {
-
-                List<Integer> notPerfectIVSlots = new ArrayList<>();
-                for (int i = 0; i < 6; i++) {
-
-                    if (ivs[i] != 31) {
-
-                        notPerfectIVSlots.add(i);
-
-                    }
-
-                }
-
-                for (int i = perfectCount; i <= 3; i++) {
-
-                    int slot = RandomHelper.getRandomElementFromList(notPerfectIVSlots);
-                    ivs[slot] = 31;
-                    notPerfectIVSlots.removeIf(e -> e == slot);
-
-                }
-
-            }
-
-        }
         if (level > 0) {
 
             pokemon.setLevel(level);
@@ -123,8 +90,12 @@ public class MythicHandler {
             pokemon.setLevel(RandomHelper.getRandomNumberBetween(pokemon.getForm().minLevel, pokemon.getForm().maxLevel));
 
         }
-        pokemon.getIVs().fillFromArray(ivs);
-        pokemon.setGender(Gender.getRandomGender(pokemon.getForm()));
+        PixelmonHelpers.fixPokemonIVsAndGender(pokemon);
+        if (!palette.equalsIgnoreCase("")) {
+
+            pokemon.setPalette(palette);
+
+        }
         setMythic(pokemon, getFromName(mythic), false);
         return pokemon;
 
@@ -270,6 +241,7 @@ public class MythicHandler {
             int stat = pokemon.getStats().get(battleStat);
             int updated = (int) (stat * ConfigGetters.statModifier);
             pokemon.getStats().set(battleStat, updated);
+            pixelmon.update(EnumUpdateType.Stats);
 
         }
         if (spawn) {
